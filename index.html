@@ -3,96 +3,151 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PS5 Homebrew Store</title>
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #080d1c;
-  color: white;
-  font-family: Arial, sans-serif;
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d19;color:white;
+ font-family:Arial,sans-serif
 }
-header {
-  padding: 25px 7%;
-  background: #111a30;
-  border-bottom: 2px solid #168cff;
+header{
+ background:#101c35;padding:22px 5%;
+ display:flex;justify-content:space-between;
+ align-items:center;flex-wrap:wrap;gap:15px;
+ border-bottom:2px solid #168cff
 }
-h1 { margin: 0; color: #40a9ff; }
-main { padding: 35px 7%; }
-.hero {
-  padding: 35px;
-  border-radius: 18px;
-  background: linear-gradient(120deg,#142e55,#07101e);
+.logo{font-size:24px;font-weight:bold;color:#45aaff}
+nav a{color:#ddd;text-decoration:none;margin:10px}
+main{padding:35px 6%}
+.hero{
+ min-height:300px;padding:45px;
+ border-radius:20px;
+ background:linear-gradient(110deg,#063c75,#111a30 75%);
+ display:flex;flex-direction:column;
+ justify-content:center
 }
-.hero h2 { font-size: 34px; }
-button {
-  background: #087fff;
-  color: white;
-  border: 0;
-  padding: 13px 22px;
-  border-radius: 8px;
-  cursor: pointer;
+.hero h1{font-size:42px;margin:5px 0}
+button{
+ background:#087fff;color:white;border:0;
+ padding:13px 22px;border-radius:8px;
+ cursor:pointer;font-weight:bold
 }
-input {
-  padding: 13px;
-  width: 100%;
-  max-width: 400px;
-  margin: 20px 0;
-  border-radius: 8px;
-  border: 0;
+input{
+ width:100%;max-width:450px;padding:15px;
+ border:1px solid #345;border-radius:9px;
+ background:#17243b;color:white;margin:20px 0
 }
-.card {
-  background: #17243b;
-  padding: 22px;
-  border-radius: 12px;
-  margin-top: 15px;
+h2{margin-top:35px}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:18px
+}
+.card{
+ background:#15233a;padding:20px;
+ border-radius:13px;border:1px solid #243b5e;
+ transition:.2s
+}
+.card:hover{transform:translateY(-4px);border-color:#168cff}
+.cover{
+ height:120px;border-radius:9px;
+ background:linear-gradient(135deg,#145a9d,#071426);
+ display:flex;align-items:center;
+ justify-content:center;font-size:23px;
+ font-weight:bold;color:white
+}
+small{color:#a9c7e8}
+footer{
+ padding:30px;text-align:center;
+ color:#8294ad;margin-top:40px
 }
 </style>
 </head>
 <body>
+
 <header>
-  <h1>PS5 HOMEbrew STORE</h1>
-  <p>Your homebrew and games hub</p>
+ <div class="logo">PS5 HOMEbrew STORE</div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#games">Games</a>
+  <a href="#homebrew">Homebrew</a>
+ </nav>
 </header>
-<main>
-  <section class="hero">
-    <h2>Welcome to the Store</h2>
-    <p>Discover games, homebrew and useful tools.</p>
-  </section>
 
-  <h2>Featured Game</h2>
-  <div class="card">
-    <h2>BeamNG.drive</h2>
-    <p>Explore realistic vehicle physics and driving simulation.</p>
-    <p>PS5 availability: Verify official platform listing.</p>
-    <button onclick="window.open(
-      'https://store.playstation.com/',
-      '_blank'
-    )">PlayStation Store</button>
-  </div>
+<main id="home">
 
-  <h2>Find Games</h2>
-  <input id="search" placeholder="Search games..."
-    oninput="filterGames()">
+<section class="hero">
+ <small>FEATURED GAME</small>
+ <h1>BeamNG.drive</h1>
+ <p>Experience realistic vehicle physics and driving simulation.</p>
+ <div>
+  <button onclick="window.open(
+  'https://store.playstation.com/','_blank')">
+  PlayStation Store
+  </button>
+ </div>
+</section>
 
-  <div id="games">
-    <div class="card">Homebrew Collection</div>
-    <div class="card">Free Games</div>
-    <div class="card">Game Tools</div>
-  </div>
+<h2>Discover Games</h2>
+<input id="search" placeholder="Search the store..."
+ oninput="searchGames()">
+
+<section class="grid" id="games">
+ <article class="card">
+  <div class="cover">BEAMNG</div>
+  <h3>BeamNG.drive</h3>
+  <small>Driving Simulation</small>
+  <p>Realistic vehicle physics and crashes.</p>
+  <button onclick="window.open(
+  'https://store.playstation.com/','_blank')">
+  View Store
+  </button>
+ </article>
+
+ <article class="card">
+  <div class="cover">HOMEbrew</div>
+  <h3>Homebrew Collection</h3>
+  <small>Homebrew</small>
+  <p>Explore community-created projects.</p>
+ </article>
+
+ <article class="card">
+  <div class="cover">FREE</div>
+  <h3>Free Games</h3>
+  <small>Free-to-play</small>
+  <p>Discover free and authorized games.</p>
+ </article>
+
+ <article class="card">
+  <div class="cover">TOOLS</div>
+  <h3>Game Tools</h3>
+  <small>Utilities</small>
+  <p>Useful gaming resources.</p>
+ </article>
+</section>
+
+<h2 id="homebrew">Homebrew Hub</h2>
+<p>Community projects and legitimate homebrew resources.</p>
+
 </main>
 
-<script>
-function filterGames() {
-  const query = document.getElementById('search')
-    .value.toLowerCase();
+<footer>
+PS5 Homebrew Store · Community project · Version 2.0
+</footer>
 
-  document.querySelectorAll('#games .card').forEach(card => {
-    card.style.display = card.textContent.toLowerCase()
-      .includes(query) ? 'block' : 'none';
-  });
+<script>
+function searchGames(){
+ const q=document.getElementById('search')
+ .value.toLowerCase();
+ document.querySelectorAll('#games .card')
+ .forEach(card=>{
+  card.style.display=card.innerText.toLowerCase()
+  .includes(q)?'block':'none';
+ });
 }
 </script>
+
 </body>
 </html>
+
