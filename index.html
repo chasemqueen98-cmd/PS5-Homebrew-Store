@@ -4,150 +4,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PS5 Homebrew Store</title>
+<title>PS5 Practice JB</title>
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;background:#080d19;color:white;
+ margin:0;background:#080e1c;color:white;
  font-family:Arial,sans-serif
 }
 header{
- background:#101c35;padding:22px 5%;
- display:flex;justify-content:space-between;
- align-items:center;flex-wrap:wrap;gap:15px;
+ padding:24px;background:#101d36;
  border-bottom:2px solid #168cff
 }
-.logo{font-size:24px;font-weight:bold;color:#45aaff}
-nav a{color:#ddd;text-decoration:none;margin:10px}
-main{padding:35px 6%}
-.hero{
- min-height:300px;padding:45px;
- border-radius:20px;
- background:linear-gradient(110deg,#063c75,#111a30 75%);
- display:flex;flex-direction:column;
- justify-content:center
+h1{color:#55aaff;margin:0}
+main{max-width:900px;margin:auto;padding:25px}
+.panel{
+ background:#14243e;padding:22px;
+ border:1px solid #29466d;
+ border-radius:14px;margin:18px 0
 }
-.hero h1{font-size:42px;margin:5px 0}
 button{
  background:#087fff;color:white;border:0;
- padding:13px 22px;border-radius:8px;
- cursor:pointer;font-weight:bold
+ border-radius:8px;padding:13px 20px;
+ cursor:pointer;font-weight:bold;margin:5px
 }
-input{
- width:100%;max-width:450px;padding:15px;
- border:1px solid #345;border-radius:9px;
- background:#17243b;color:white;margin:20px 0
+button:disabled{opacity:.4;cursor:not-allowed}
+.setting{
+ padding:16px;background:#1d3150;
+ margin:10px 0;border-radius:8px;
+ display:flex;justify-content:space-between;
+ align-items:center;gap:10px
 }
-h2{margin-top:35px}
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
- gap:18px
+.timer{
+ font-size:48px;text-align:center;
+ color:#59adff;font-weight:bold
 }
-.card{
- background:#15233a;padding:20px;
- border-radius:13px;border:1px solid #243b5e;
- transition:.2s
+small{color:#9bb5d5}
+.bar{
+ height:10px;background:#263b59;
+ border-radius:10px;overflow:hidden
 }
-.card:hover{transform:translateY(-4px);border-color:#168cff}
-.cover{
- height:120px;border-radius:9px;
- background:linear-gradient(135deg,#145a9d,#071426);
- display:flex;align-items:center;
- justify-content:center;font-size:23px;
- font-weight:bold;color:white
+#progress{
+ height:100%;width:0%;
+ background:#168cff;transition:width .2s
 }
-small{color:#a9c7e8}
-footer{
- padding:30px;text-align:center;
- color:#8294ad;margin-top:40px
-}
+.hidden{display:none}
 </style>
 </head>
 <body>
-
 <header>
- <div class="logo">PS5 HOMEbrew STORE</div>
- <nav>
-  <a href="#home">Home</a>
-  <a href="#games">Games</a>
-  <a href="#homebrew">Homebrew</a>
- </nav>
+ <h1>PS5 PRACTICE JB</h1>
+ <small>Firmware testing simulator · Version 3.0</small>
 </header>
+<main>
 
-<main id="home">
+<section class="panel">
+ <h2>Practice Jailbreak</h2>
+ <p>Run a simulated practice session.</p>
+ <button id="start">RUN PRACTICE EXPLOIT</button>
+ <p id="status">Status: Waiting</p>
+ <div class="bar"><div id="progress"></div></div>
+</section>
 
-<section class="hero">
- <small>FEATURED GAME</small>
- <h1>BeamNG.drive</h1>
- <p>Experience realistic vehicle physics and driving simulation.</p>
- <div>
-  <button onclick="window.open(
-  'https://store.playstation.com/','_blank')">
-  PlayStation Store
-  </button>
+<section class="panel">
+ <h2>Debug Settings Simulator</h2>
+ <div class="timer" id="timer">60:00</div>
+ <p id="sessionStatus">No active session</p>
+ <button id="open" disabled>OPEN DEBUG SETTINGS</button>
+ <button id="restart" disabled>NEW SESSION</button>
+</section>
+
+<section class="panel hidden" id="debug">
+ <h2>Debug Settings</h2>
+ <small>SIMULATED DEVELOPER MENU</small>
+
+ <div class="setting">
+  Game Debug Settings
+  <button onclick="toggle(this)">OFF</button>
  </div>
+ <div class="setting">
+  System Debug Settings
+  <button onclick="toggle(this)">OFF</button>
+ </div>
+ <div class="setting">
+  Network Debug Settings
+  <button onclick="toggle(this)">OFF</button>
+ </div>
+ <div class="setting">
+  Payload Simulator
+  <button onclick="toggle(this)">OFF</button>
+ </div>
+ <div class="setting">
+  Homebrew Launcher
+  <button onclick="toggle(this)">OFF</button>
+ </div>
+
+ <p><small>These switches only change this webpage.</small></p>
 </section>
-
-<h2>Discover Games</h2>
-<input id="search" placeholder="Search the store..."
- oninput="searchGames()">
-
-<section class="grid" id="games">
- <article class="card">
-  <div class="cover">BEAMNG</div>
-  <h3>BeamNG.drive</h3>
-  <small>Driving Simulation</small>
-  <p>Realistic vehicle physics and crashes.</p>
-  <button onclick="window.open(
-  'https://store.playstation.com/','_blank')">
-  View Store
-  </button>
- </article>
-
- <article class="card">
-  <div class="cover">HOMEbrew</div>
-  <h3>Homebrew Collection</h3>
-  <small>Homebrew</small>
-  <p>Explore community-created projects.</p>
- </article>
-
- <article class="card">
-  <div class="cover">FREE</div>
-  <h3>Free Games</h3>
-  <small>Free-to-play</small>
-  <p>Discover free and authorized games.</p>
- </article>
-
- <article class="card">
-  <div class="cover">TOOLS</div>
-  <h3>Game Tools</h3>
-  <small>Utilities</small>
-  <p>Useful gaming resources.</p>
- </article>
-</section>
-
-<h2 id="homebrew">Homebrew Hub</h2>
-<p>Community projects and legitimate homebrew resources.</p>
 
 </main>
-
-<footer>
-PS5 Homebrew Store · Community project · Version 2.0
-</footer>
-
 <script>
-function searchGames(){
- const q=document.getElementById('search')
- .value.toLowerCase();
- document.querySelectorAll('#games .card')
- .forEach(card=>{
-  card.style.display=card.innerText.toLowerCase()
-  .includes(q)?'block':'none';
- });
-}
-</script>
+const start=document.getElementById('start');
+const openBtn=document.getElementById('open');
+const restart=document.getElementById('restart');
+const debug=document.getElementById('debug');
+const timer=document.getElementById('timer');
+const status=document.getElementById('status');
+const sessionStatus=document.getElementById('sessionStatus');
+const progress=document.getElementById('progress');
 
+let endTime=0;
+let interval=null;
+let active=false;
+let unlocked=false;
+
+function toggle(btn){
+ if(!unlocked)return;
+ btn.textContent=btn.textContent==='OFF'?'ON':'OFF';
+}
+
+function lock(){
+ active=false;
+ unlocked=false;
+ clearInterval(interval);
+ debug.classList.add('hidden');
+ openBtn.disabled=true;
+ restart.disabled=false;
+ start.disabled=false;
+ timer.textContent='00:00';
+ status.textContent='Status: Session expired';
+ sessionStatus.textContent='Session ended. Start a new practice session.';
+ progress.style.width='0%';
+}
+
+function updateTimer(){
+ const remaining=Math.max(0,Math.ceil((endTime-Date.now())/1000));
+ const mins=Math.floor(remaining/60);
+ const secs=remaining%60;
+ timer.textContent=
+ String(mins).padStart(2,'0')+':'+
+ String(secs).padStart(2,'0');
+
+ if(remaining<=0)lock();
+}
+
+function runSession(){
+ clearInterval(interval);
+ active=true;
+ unlocked=false;
+ debug.classList.add('hidden');
+ start.disabled=true;
+ restart.disabled=true;
+ openBtn.disabled=true;
+ status.textContent='Status: Simulating exploit...';
+ sessionStatus.textContent='Practice simulation running';
+
+ let value=0;
+ progress.style.width='0%';
+
+ const loading=setInterval(()=>{
+  value+=10;
+  progress.style.width=value+'%';
+
+  if(value>=100){
+   clearInterval(loading);
+   active=false;
+   unlocked=true;
+   endTime=Date.now()+60*60*1000;
+   start.disabled=false;
+   restart.disabled=true;
+   openBtn.disabled=false;
+   status.textContent='Status: Simulation successful';
+   sessionStatus.textContent='Practice session active';
+   updateTimer();
+   interval=setInterval(updateTimer,250);
+  }
+ },250);
+}
+
+start.addEventListener('click',runSession);
+restart.addEventListener('click',runSession);
+
+openBtn.addEventListener('click',()=>{
+ if(unlocked && Date.now()<endTime){
+  debug.classList.remove('hidden');
+ }
+});
+
+</script>
 </body>
 </html>
-
